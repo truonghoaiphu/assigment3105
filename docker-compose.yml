@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: docker/api
+    ports:
+      - 22040:80
+    volumes:
+      - ./api:/var/www/html
+      - ./docker/api/logs/nginx:/var/log/nginx
+      - ./docker/api/.composer:/root/.composer
+    depends_on:
+      - postgres
+
+  postgres:
+    build:
+      context: docker/postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_MULTIPLE_DATABASES_WITH_POSTGIS=laravel
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 22041:5432
+    networks:
+      default:
+        aliases:
+          - someflousrishingcompany.cmcglobal.localhost
