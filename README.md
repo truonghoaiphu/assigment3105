@@ -8,7 +8,7 @@ Clone api repo
 
 ```shell
 cd ~/code
-git https://github.com/truonghoaiphu/CMC-Global-Cultural-Infusion.git cultural-test
+git clone git@github.com:truonghoaiphu/assigment3105.git cultural-test
 cd cultural-test
 cp api/.env{.example,}
 ```
